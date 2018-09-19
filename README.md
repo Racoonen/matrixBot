@@ -38,6 +38,16 @@ To print all commands just type
 |!showTemplates| To show all template names|
 |!deleteTemplate :name:| To delete the template poll with that name|
 
+
+## Using the pollbot
+### Polls
+
+The pollbot will print the instructions to create a new poll.
+
+### Templates
+
+Templates are poll which can be started at any time without the need to create a new poll each time. Any template which is created within any room of the chat can be started everywhere.
+
 ## Bot SDK
 
 I've created a small bot SDK in the bot directory of this repository. Feel free to use it for other bots.
