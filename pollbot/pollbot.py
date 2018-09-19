@@ -38,7 +38,8 @@ def fillMethods():
         "!vote": vote,
         "!gopoll": goPoll,
         "!startpoll": startPoll,
-        "!leave": leave
+        "!leave": leave,
+        "!add": addChoice
         }
 
 
@@ -64,6 +65,7 @@ def help(room, event):
     help_str = "!startpoll      - Create a poll\n"
     help_str += "!gopoll        - To Start a poll\n"
     help_str += "!info          - View an ongoing poll\n"
+    help_str += "!add <choice>  - To add a choice to the current poll\n"
     help_str += "!vote          - Vote in an ongoing poll\n"
     help_str += "!endpoll       - End an ongoing poll\n"
     help_str += "!results       - View the results of the last ended poll\n"
@@ -74,6 +76,17 @@ def help(room, event):
     help_str += "!showTemplates - To show all template names\n"
     help_str += "!deleteTemplate <name> - To delete a template"
     room.send_notice(help_str)
+
+
+def addChoice(room, event):
+    global Templates
+    p = CurrentPolls.get(room.room_id, None)
+    if p is None:
+        room.send_notice("There is no poll in this room")
+        return
+    newChoice = getNameFromBody(5, event)
+    p.appendChoices(newChoice)
+    info(room, event)
 
 
 def startPoll(room, event):
@@ -136,7 +149,7 @@ def deleteTemplate(room, event):
     if poll is None:
         room.send_notice("There is no template with the name {}".format(name))
         return
-    Templates.remove(poll)
+    del Templates[name]
     room.send_notice("Template {} deleted".format(name))
     updateDatabase()
 
@@ -229,7 +242,7 @@ def addMsgToPoll(poll, msg):
     if poll.choices is None:
             poll.choices = []
 
-    poll.choices.append(msg)
+    poll.appendChoices(msg)
     if poll.isTemplate():
         return "Response added. Send another choice or "\
                "type !endTemplate to close the creation"

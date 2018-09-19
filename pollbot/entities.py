@@ -13,6 +13,10 @@ class Poll(object):
         self.templateName = templateName
         self.votes = []
 
+    def appendChoices(self, choice):
+        print(choice)
+        self.choices.append(choice)
+
     def isTemplate(self):
         return False
 
