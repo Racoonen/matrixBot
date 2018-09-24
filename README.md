@@ -24,9 +24,9 @@ To print all commands just type
 
 | Command | Use |
 | ------- | --- |
-|!commands!|To print all commands|
+|!commands|To print all commands|
 |!startpoll|To create a new poll|
-|!gopoll!|To start a poll created with !startpoll|
+|!gopoll|To start a poll created with !startpoll|
 |!info|To get info about the current poll|
 |!vote :number:|To vote in a poll|
 |!add :choice:|To add a choice to current poll|
