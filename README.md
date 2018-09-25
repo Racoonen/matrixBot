@@ -20,8 +20,6 @@ You need to invite the bot into your chat room. It will accept all invites.
 
 ## Commands
 
-To print all commands just type
-
 | Command | Use |
 | ------- | --- |
 |!commands|To print all commands|
